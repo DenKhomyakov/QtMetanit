@@ -32,8 +32,11 @@ int main(int argc, char *argv[])
     layout->addWidget(button3);
     layout->addWidget(button4);
 
-    // Устанавливаем расположение виджетов
-    layout->setDirection(QBoxLayout::Direction::BottomToTop);
+    // Устанавливаем растяжение после крайнего виджета
+    layout->addStretch(10);
+
+    // Устанавливаем растяжение перед вторым виджетом
+    layout->insertStretch(2, 10);
 
     widget->show();
     return app.exec();
