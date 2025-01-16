@@ -2,10 +2,6 @@
 #include <QWidget>
 #include <QPushButton>
 
-void onClick();
-
-
-
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv); // Объект приложения
@@ -16,9 +12,9 @@ int main(int argc, char *argv[])
     widget->setMinimumWidth(300);
 
     QPushButton* button = new QPushButton("Click me!", widget);
+    button->setGeometry(10, 10, 100, 25);
     button->setIcon(QIcon("D:\\1.jpg"));
 
     widget->show();
     return app.exec();
 }
-
