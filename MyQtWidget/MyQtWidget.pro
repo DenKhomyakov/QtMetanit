@@ -1,4 +1,4 @@
-QT += widgets
+QT += widgets gui
 
 CONFIG += c++17 cmdline
 
