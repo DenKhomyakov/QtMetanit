@@ -1,20 +1,20 @@
 #include <QApplication>
 #include <QWidget>
 #include <Qlabel>
+#include <QVBoxLayout>
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv); // Объект приложения
 
-    QWidget widget;
+    // Первый способ управления компоновкой
+    QWidget* widget1 = new QWidget;
+    QVBoxLayout* layout1 = new QVBoxLayout(widget1);
 
-    widget.setWindowTitle("Qt на METANIT.COM");
-    widget.setMinimumHeight(300);
-    widget.setMinimumWidth(300);
+    // Второй способ управления компоновкой
+    QWidget* widget2 = new QWidget;
+    QVBoxLayout* layout2 = new QVBoxLayout();
+    widget2->setLayout(layout2);
 
-    QLabel label{&widget};
-    label.setText("Hello METANIT.COM");
-
-    widget.show();
     return app.exec();
 }
