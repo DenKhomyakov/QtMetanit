@@ -23,14 +23,17 @@ int main(int argc, char *argv[])
     QVBoxLayout* layout = new QVBoxLayout();
     widget->setLayout(layout);
 
+    // Устанавливаем ограничение по размеру - минимальный размер
+    layout->addStrut(100);
+
     // Добавляем виджеты (кнопки) в контейнер
     layout->addWidget(button1);
-    layout->addSpacing(100);
     layout->addWidget(button2);
-    layout->addSpacing(100);
     layout->addWidget(button3);
     layout->addWidget(button4);
-    layout->addSpacing(50);
+
+    // Устанавливаем расположение виджетов
+    layout->setDirection(QBoxLayout::Direction::BottomToTop);
 
     widget->show();
     return app.exec();
