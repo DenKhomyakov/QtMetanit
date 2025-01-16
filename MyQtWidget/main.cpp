@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QWidget>
-#include <QVBoxLayout>
+#include <QGridLayout>
 #include <QPushButton>
 
 int main(int argc, char *argv[])
@@ -20,23 +20,14 @@ int main(int argc, char *argv[])
     QPushButton* button4 = new QPushButton("Button 4");
 
     // Создаём контейнер для расположения виджетов по вертикали
-    QVBoxLayout* layout = new QVBoxLayout();
+    QGridLayout* layout = new QGridLayout();
     widget->setLayout(layout);
 
-    // Устанавливаем ограничение по размеру - минимальный размер
-    layout->addStrut(100);
-
     // Добавляем виджеты (кнопки) в контейнер
-    layout->addWidget(button1);
-    layout->addWidget(button2);
-    layout->addWidget(button3);
-    layout->addWidget(button4);
-
-    // Устанавливаем растяжение после крайнего виджета
-    layout->addStretch(10);
-
-    // Устанавливаем растяжение перед вторым виджетом
-    layout->insertStretch(2, 10);
+    layout->addWidget(button1, 0, 0);
+    layout->addWidget(button2, 0, 1);
+    layout->addWidget(button3, 1, 0);
+    layout->addWidget(button4, 1, 1);
 
     widget->show();
     return app.exec();
