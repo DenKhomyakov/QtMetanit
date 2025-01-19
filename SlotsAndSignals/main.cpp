@@ -10,8 +10,12 @@ int main(int argc, char *argv[])
 
     Counter counter{};
 
-    QObject::connect(&counter, &Counter::increased, onCounterChanged);
-    QObject::connect(&counter, &Counter::decreased, onCounterChanged);
+    // Перенаправляем сигнал increased на сигнал valueChanged
+    QObject::connect(&counter, &Counter::increased, &counter, &Counter::valueChanged);
+    // Перенаправляем сигнал decreased на сигнал valueChanged
+    QObject::connect(&counter, &Counter::decreased, &counter, &Counter::valueChanged);
+
+    QObject::connect(&counter, &Counter::valueChanged, onCounterChanged);
 
     counter.increase();
     counter.decrease();

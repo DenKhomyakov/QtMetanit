@@ -13,6 +13,7 @@ public:
     void decrease();
 
 signals:
+    void valueChanged(int newValue);
     void increased(int newValue);
     void decreased(int newValue);
 
