@@ -8,13 +8,14 @@ class Counter :  public QObject
     Q_OBJECT
 
 public:
-    explicit Counter(QObject* parrent = nullptr);
+    Counter() {}
+    void increase();
 
 signals:
-    void created();
+    void increased(int newValue);
 
-public slots:
-    void onCreated();
+private:
+    int value{};
 };
 
 #endif // COUNTER_H
