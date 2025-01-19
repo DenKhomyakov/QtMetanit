@@ -2,22 +2,26 @@
 #include <iostream>
 #include "counter.h"
 
-void onCounterChanged(int newValue);
+// Класс для обраболтки сигнала
+class CounterHandler : public QObject {
+public:
+    void handle(int newValue) {
+        std::cout << "Counter value: " << newValue << std::endl;
+    }
+};
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
     Counter counter{};
-    QObject::connect(&counter, &Counter::increased, onCounterChanged);
+    CounterHandler handler{};
+
+    QObject::connect(&counter, &Counter::increased, &handler, &CounterHandler::handle);
 
     counter.increase();
     counter.increase();
     counter.increase();
 
     return a.exec();
-}
-
-void onCounterChanged(int newValue) {
-    std::cout << "New value: " << newValue << std::endl;
 }
