@@ -10,9 +10,11 @@ class Counter :  public QObject
 public:
     Counter() {}
     void increase();
+    void decrease();
 
 signals:
     void increased(int newValue);
+    void decreased(int newValue);
 
 private:
     int value{};
