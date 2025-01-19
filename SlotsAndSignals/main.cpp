@@ -1,31 +1,33 @@
-#include <QCoreApplication>
-#include <iostream>
-#include "counter.h"
+#include <QApplication>
+#include <QWidget>
+#include <QPushButton>
+#include <QMessageBox>
 
-void onCounterChanged(int newValue);
+void onClicked();
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    QApplication a(argc, argv);
 
-    Counter counter{};
+    QWidget* widget = new QWidget();
+    widget->setWindowTitle("Signals and slots");
+    widget->setMinimumHeight(150);
+    widget->setMinimumWidth(450);
 
-    // Перенаправляем сигнал increased на сигнал valueChanged
-    QObject::connect(&counter, &Counter::increased, &counter, &Counter::valueChanged);
-    // Перенаправляем сигнал decreased на сигнал valueChanged
-    QObject::connect(&counter, &Counter::decreased, &counter, &Counter::valueChanged);
+    QPushButton* button = new QPushButton("Click me!", widget);
+    button->setGeometry(10, 10, 100, 25);
 
-    QObject::connect(&counter, &Counter::valueChanged, onCounterChanged);
+    QObject::connect(button, &QPushButton::clicked, onClicked);
 
-    counter.increase();
-    counter.decrease();
-    counter.increase();
-    counter.decrease();
-    counter.increase();
+    widget->show();
 
     return a.exec();
 }
 
-void onCounterChanged(int newValue) {
-    std::cout << "New value: " << newValue << std::endl;
+void onClicked() {
+    QMessageBox* messageBox = new QMessageBox();
+    messageBox->setWindowTitle("Message");
+    messageBox->setMinimumSize(100, 100);
+    messageBox->setText("This is Qt");
+    messageBox->show();
 }
